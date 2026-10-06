@@ -166,6 +166,48 @@
     .hero.page .copy { max-width: 460px; }
     .wall video { object-position: 68% center; }
     footer { scroll-snap-align: none; }
+    .frame {
+      position: relative;
+      min-height: 100dvh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .frame img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .frame .cap {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 8vh 6vw;
+      max-width: 460px;
+      padding: 22px;
+      background: rgba(5,5,5,0.62);
+      border: 1px solid rgba(192,192,192,0.22);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+    }
+    .frame .cap h2 { margin: 0; }
+    .split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .split img, .shot {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 1px solid rgba(192,192,192,0.22);
+    }
+
     .kicker {
       color: var(--accent);
       letter-spacing: 0.08em;
@@ -567,21 +609,24 @@
       </div>
     </header>
 
+    <section class="frame">
+      <img src="assets/shoebox.jpg" alt="Shoebox of receipts left on a wet curb" />
+      <div class="cap">
+        <p class="kicker">The old way</p>
+        <h2>Leave the shoebox on the curb.</h2>
+      </div>
+    </section>
+
     <section class="page">
       <div class="wrap">
         <div class="section-head">
           <h2>Financial clarity, unlocked.</h2>
           <p>Stop guessing. Executive-ready reporting built for growth, not for a shoebox.</p>
         </div>
-        <figure class="reel">
-          <video autoplay muted loop playsinline>
-            <source src="assets/books.mp4" type="video/mp4" />
-          </video>
-          <figcaption>
-            <span>Shoebox to dashboard</span>
-            <span>Receipts in · lender-ready out</span>
-          </figcaption>
-        </figure>
+        <div class="split">
+          <img src="assets/filings.jpg" alt="Receipts turning into chrome filings" />
+          <img src="assets/plates.jpg" alt="Etched metal plates stacked like statements" />
+        </div>
         <div class="grid-3">
           <article class="card">
             <div class="icon">▣</div>
@@ -605,7 +650,8 @@
     <section class="page band">
       <div class="wrap engine">
         <div>
-          <p class="kicker">The engine</p>
+          <img class="shot" src="assets/spark.jpg" alt="Chrome arrow tip with a single spark" />
+          <p class="kicker" style="margin-top:18px">The engine</p>
           <h2>Runs quiet. Catches the expensive stuff.</h2>
         </div>
         <div class="engine-list">
@@ -636,9 +682,13 @@
 
     <section class="page" id="work">
       <div class="wrap">
-        <div class="section-head">
-          <h2>What we do.</h2>
-          <p>Three moves to kill the chaos. One engine to stay lender-ready.</p>
+        <div class="split" style="margin-bottom:22px">
+          <div>
+            <p class="kicker">What we do</p>
+            <h2>Three moves. One folder.</h2>
+            <p class="lede">Kill the chaos once. Stay lender-ready after that.</p>
+          </div>
+          <img src="assets/folder.jpg" alt="Black folder with silver corners on a brick ledge" />
         </div>
         <div class="grid-3">
           <article class="card">
@@ -701,6 +751,14 @@
       </div>
     </section>
 
+    <section class="frame">
+      <img src="assets/lamp.jpg" alt="Wet black brick and one streetlamp" />
+      <div class="cap">
+        <p class="kicker">After hours</p>
+        <h2>The street stays open.</h2>
+      </div>
+    </section>
+
     <section class="page" id="pricing">
       <div class="wrap">
         <div class="section-head">
@@ -752,9 +810,7 @@
 
     <section class="page band" id="cred">
       <div class="wrap cred">
-        <div class="shield" aria-hidden="true">
-          <img src="assets/logo.png" alt="" style="width:78%;height:auto;object-fit:contain" />
-        </div>
+        <img class="shot" src="assets/vault.jpg" alt="Black steel vault door with a skyline etched in" style="height:100%;min-height:420px" />
         <div>
           <p class="kicker">The street cred</p>
           <h2>35+ years of financial leadership.</h2>
@@ -765,6 +821,14 @@
           </div>
           <p class="fine">Specializes in non-attest financial reporting and compliance support. No audit, review, or tax filing services.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="frame">
+      <img src="assets/sign.jpg" alt="Cut metal STREET sign screwed to black brick" />
+      <div class="cap">
+        <p class="kicker">Chrome edition</p>
+        <h2>Bolted to the wall.</h2>
       </div>
     </section>
 
