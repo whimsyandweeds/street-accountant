@@ -409,7 +409,30 @@
     }
     .flow b { color: var(--ink); font-weight: 560; }
 
-    table {
+    .fees { display: grid; gap: 8px; }
+    .fee {
+      display: grid;
+      grid-template-columns: 200px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(60, 60, 60, 0.9);
+      background: rgba(18, 18, 18, 0.72);
+      color: var(--muted);
+      cursor: pointer;
+      transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+    }
+    .fee strong { display: block; color: var(--ink); font-size: 13px; letter-spacing: 0.06em; }
+    .fee small { color: var(--faint); letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; }
+    .fee p { margin: 0; }
+    .fee b { color: var(--ink); font-weight: 700; white-space: nowrap; }
+    .fee.on {
+      border-color: #c0c0c0;
+      background: rgba(12, 12, 12, 0.92);
+      color: #d5d5d5;
+    }
+    .fee-step { margin: 0 0 10px; color: var(--faint); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
       width: 100%;
       border-collapse: collapse;
       background: rgba(18, 18, 18, 0.72); backdrop-filter: blur(10px);
@@ -554,6 +577,8 @@
       }
       .section-head, .foot { display: grid; }
       .hero.page { width: auto; padding-top: 88px; }
+      .fee { grid-template-columns: 1fr; }
+      .fee b { white-space: normal; }
       h1 { font-size: 52px; }
       td.price { text-align: left; white-space: normal; }
       table, thead, tbody, tr, th, td { display: block; }
@@ -765,42 +790,34 @@
           <h2>Simple. Fixed-fee. No surprises.</h2>
           <p>The cleaner the cloud setup, the lower the monthly. No hourly billing.</p>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Package</th>
-              <th>What you get</th>
-              <th>Investment</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>SETUP</strong><small>One-time</small></td>
-              <td>Software conversion, cleanup, system design, staff training</td>
-              <td class="price">$2,500 – $8,000+</td>
-            </tr>
-            <tr class="hot">
-              <td><strong>MONTHLY MONITORING</strong><small>Remote clients <span class="pill">MOST POPULAR</span></small></td>
-              <td>Ongoing reporting and reconciliations. CPA-verified monthly.</td>
-              <td class="price">$400 – $1,200/mo</td>
-            </tr>
-            <tr>
-              <td><strong>QUARTERLY DEEP DIVE</strong><small>Add-on</small></td>
-              <td>Trend analysis, multi-entity reporting, cash flow forecasting</td>
-              <td class="price">+$300 – $800</td>
-            </tr>
-            <tr>
-              <td><strong>YEAR-END PACKAGE</strong><small>Standalone or bundled</small></td>
-              <td>Pristine year-end close — bundled for monthly clients, or standalone</td>
-              <td class="price">$1,500 – $4,000</td>
-            </tr>
-            <tr>
-              <td><strong>COMPLIANCE CALENDAR</strong><small>Per project</small></td>
-              <td>Tracking and filing for local and state licenses and recurring fees</td>
-              <td class="price">Modest add-on</td>
-            </tr>
-          </tbody>
-        </table>
+        <p class="fee-step" id="fee-step">01 / 05 · scroll to walk the list</p>
+        <div class="fees" id="fees">
+          <article class="fee on">
+            <div><strong>SETUP</strong><small>One-time</small></div>
+            <p>Software conversion, cleanup, system design, staff training</p>
+            <b>$2,500 – $8,000+</b>
+          </article>
+          <article class="fee">
+            <div><strong>MONTHLY MONITORING</strong><small>Remote clients · most popular</small></div>
+            <p>Ongoing reporting and reconciliations. CPA-verified monthly.</p>
+            <b>$400 – $1,200/mo</b>
+          </article>
+          <article class="fee">
+            <div><strong>QUARTERLY DEEP DIVE</strong><small>Add-on</small></div>
+            <p>Trend analysis, multi-entity reporting, cash flow forecasting</p>
+            <b>+$300 – $800</b>
+          </article>
+          <article class="fee">
+            <div><strong>YEAR-END PACKAGE</strong><small>Standalone or bundled</small></div>
+            <p>Pristine year-end close — bundled for monthly clients, or standalone</p>
+            <b>$1,500 – $4,000</b>
+          </article>
+          <article class="fee">
+            <div><strong>COMPLIANCE CALENDAR</strong><small>Per project</small></div>
+            <p>Tracking and filing for local and state licenses and recurring fees</p>
+            <b>Modest add-on</b>
+          </article>
+        </div>
         <div class="note">
           <span>Self-sufficient clients win — cleaner books, lower rate.</span>
           <span>All fixed-fee · No hourly billing</span>
@@ -875,6 +892,27 @@
   </footer>
 
   <script>
+    const fees = [...document.querySelectorAll("#fees .fee")];
+    const step = document.getElementById("fee-step");
+    let feeIndex = 0;
+    let feeLock = 0;
+    function showFee(n) {
+      feeIndex = Math.max(0, Math.min(fees.length - 1, n));
+      fees.forEach((el, i) => el.classList.toggle("on", i === feeIndex));
+      step.textContent = String(feeIndex + 1).padStart(2, "0") + " / 05 · scroll to walk the list";
+    }
+    fees.forEach((el, i) => el.addEventListener("click", () => showFee(i)));
+    document.getElementById("pricing").addEventListener("wheel", (e) => {
+      const rect = document.getElementById("pricing").getBoundingClientRect();
+      const inView = rect.top < 80 && rect.bottom > window.innerHeight - 80;
+      if (!inView || Date.now() < feeLock) return;
+      const down = e.deltaY > 0;
+      if ((down && feeIndex < fees.length - 1) || (!down && feeIndex > 0)) {
+        e.preventDefault();
+        showFee(feeIndex + (down ? 1 : -1));
+        feeLock = Date.now() + 420;
+      }
+    }, { passive: false });
     document.getElementById("lead").addEventListener("submit", function (e) {
       e.preventDefault();
       document.getElementById("toast").style.display = "block";
