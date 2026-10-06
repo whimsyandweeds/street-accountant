@@ -431,6 +431,11 @@
       border-color: #c0c0c0;
       background: rgba(12, 12, 12, 0.92);
       color: #d5d5d5;
+      animation: ding 1.6s ease;
+    }
+    @keyframes ding {
+      0% { border-color: #ffffff; }
+      100% { border-color: #c0c0c0; }
     }
     .fee-step { margin: 0 0 10px; color: var(--faint); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
       width: 100%;
@@ -790,7 +795,7 @@
           <h2>Simple. Fixed-fee. No surprises.</h2>
           <p>The cleaner the cloud setup, the lower the monthly. No hourly billing.</p>
         </div>
-        <p class="fee-step" id="fee-step">01 / 05 · scroll to walk the list</p>
+        <p class="fee-step" id="fee-step">01 / 05</p>
         <div class="fees" id="fees">
           <article class="fee on">
             <div><strong>SETUP</strong><small>One-time</small></div>
@@ -894,25 +899,26 @@
   <script>
     const fees = [...document.querySelectorAll("#fees .fee")];
     const step = document.getElementById("fee-step");
+    const feesBox = document.getElementById("fees");
     let feeIndex = 0;
-    let feeLock = 0;
+    let feeTimer = null;
     function showFee(n) {
-      feeIndex = Math.max(0, Math.min(fees.length - 1, n));
+      feeIndex = (n + fees.length) % fees.length;
       fees.forEach((el, i) => el.classList.toggle("on", i === feeIndex));
-      step.textContent = String(feeIndex + 1).padStart(2, "0") + " / 05 · scroll to walk the list";
+      step.textContent = String(feeIndex + 1).padStart(2, "0") + " / 05";
+    }
+    function startFees() {
+      if (feeTimer) return;
+      feeTimer = setInterval(() => showFee(feeIndex + 1), 1600);
+    }
+    function stopFees() {
+      clearInterval(feeTimer);
+      feeTimer = null;
     }
     fees.forEach((el, i) => el.addEventListener("click", () => showFee(i)));
-    document.getElementById("pricing").addEventListener("wheel", (e) => {
-      const rect = document.getElementById("pricing").getBoundingClientRect();
-      const inView = rect.top < 80 && rect.bottom > window.innerHeight - 80;
-      if (!inView || Date.now() < feeLock) return;
-      const down = e.deltaY > 0;
-      if ((down && feeIndex < fees.length - 1) || (!down && feeIndex > 0)) {
-        e.preventDefault();
-        showFee(feeIndex + (down ? 1 : -1));
-        feeLock = Date.now() + 420;
-      }
-    }, { passive: false });
+    feesBox.addEventListener("mouseenter", stopFees);
+    feesBox.addEventListener("mouseleave", startFees);
+    startFees();
     document.getElementById("lead").addEventListener("submit", function (e) {
       e.preventDefault();
       document.getElementById("toast").style.display = "block";
