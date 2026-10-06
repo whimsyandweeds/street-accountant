@@ -34,13 +34,32 @@
     }
     body {
       margin: 0;
-      background: var(--bg);
+      background: #050505;
       color: var(--ink);
       font-family: Montserrat, Helvetica, Arial, sans-serif;
       font-size: 16px;
       line-height: 1.6;
       letter-spacing: 0;
     }
+    .wall {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: #050505 url("assets/brick.jpg") center / cover no-repeat;
+    }
+    .wall video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.72;
+    }
+    .wall .scrim {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(5,5,5,0.2), rgba(5,5,5,0.62));
+    }
+    nav, main, footer { position: relative; z-index: 1; }
 
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
@@ -56,7 +75,7 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(16px);
-      background: rgba(5, 5, 5, 0.92);
+      background: rgba(5, 5, 5, 0.55);
       border-bottom: 1px solid var(--line);
     }
     .nav-inner {
@@ -140,12 +159,9 @@
     .hero.page {
       width: min(1120px, calc(100% - 40px));
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 56px;
-      align-content: center;
-      align-items: center;
+      display: block;
     }
+    .hero.page .copy { max-width: 560px; }
     footer { scroll-snap-align: none; }
     .kicker {
       color: var(--accent);
@@ -215,20 +231,8 @@
       border: 1px solid var(--line);
       border-radius: 32px;
       padding: 72px 24px;
-      background: #121212;
-    }
-    .close-panel video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.38;
-    }
-    .close-panel .veil {
-      position: absolute;
-      inset: 0;
-      background: rgba(5, 5, 5, 0.72);
+      background: rgba(18, 18, 18, 0.72);
+      backdrop-filter: blur(12px);
     }
     .close-panel .inner { position: relative; z-index: 1; }
 
@@ -252,9 +256,9 @@
       margin: 0 0 18px;
       border-radius: 22px;
       overflow: hidden;
-      border: 1px solid var(--line);
-      background: #000;
-      box-shadow: var(--shadow);
+      border: 1px solid rgba(192, 192, 192, 0.22);
+      background: rgba(18, 18, 18, 0.72);
+      box-shadow: none;
     }
     .reel video {
       width: 100%;
@@ -279,8 +283,9 @@
       gap: 14px;
     }
     .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
+      background: rgba(18, 18, 18, 0.78);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(192, 192, 192, 0.22);
       border-radius: var(--radius);
       padding: 22px;
     }
@@ -310,13 +315,13 @@
     }
     .card.featured {
       border-color: var(--accent);
-      background: var(--panel);
+      background: rgba(18, 18, 18, 0.72); backdrop-filter: blur(10px);
     }
 
     .band {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: #050505;
+      border-top: 1px solid rgba(60,60,60,0.7);
+      border-bottom: 1px solid rgba(60,60,60,0.7);
+      background: transparent;
     }
     .engine {
       display: grid;
@@ -358,7 +363,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      background: var(--panel);
+      background: rgba(18, 18, 18, 0.72); backdrop-filter: blur(10px);
       border: 1px solid var(--line);
       border-radius: 22px;
       overflow: hidden;
@@ -440,7 +445,8 @@
       border: 1px solid var(--line);
       border-radius: 32px;
       padding: 72px 24px;
-      background: #121212;
+      background: rgba(18, 18, 18, 0.72);
+      backdrop-filter: blur(12px);
     }
     .close h2 { margin-bottom: 12px; }
     .close p { color: var(--muted); margin: 0 auto 22px; max-width: 460px; }
@@ -511,6 +517,12 @@
   </style>
 </head>
 <body>
+  <div class="wall" aria-hidden="true">
+    <video autoplay muted loop playsinline poster="assets/brick.jpg">
+      <source src="assets/seal.mp4" type="video/mp4" />
+    </video>
+    <div class="scrim"></div>
+  </div>
   <nav>
     <div class="wrap nav-inner">
       <a class="brand" href="#top">
@@ -532,7 +544,7 @@
 
   <main id="top">
     <header class="page hero">
-      <div>
+      <div class="copy">
         <p class="kicker">The Street Accountant · Chrome Edition</p>
         <h1>Your CFO<br>on the <em>go.</em></h1>
         <p class="lede">Sleek monthly reports in your inbox. You always know where the business stands — without a shoebox, a surprise invoice, or a cleanup bill at year-end.</p>
@@ -546,9 +558,6 @@
           <span>Lender-ready monthly</span>
         </div>
       </div>
-      <figure class="hero-visual">
-        <img src="assets/brick.jpg" alt="Street Accountant metal seal on black brick" />
-      </figure>
     </header>
 
     <section class="page">
@@ -755,10 +764,6 @@
     <section class="page close" id="start">
       <div class="wrap">
         <div class="close-panel">
-          <video autoplay muted loop playsinline poster="assets/brick.jpg">
-            <source src="assets/seal.mp4" type="video/mp4" />
-          </video>
-          <div class="veil"></div>
           <div class="inner">
           <p class="kicker">Ready to roll?</p>
           <h2>Your CFO on the Street is ready.</h2>
