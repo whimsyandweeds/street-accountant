@@ -27,7 +27,10 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
     body {
       margin: 0;
       background:
@@ -124,13 +127,26 @@
     }
     .btn.ghost:hover { background: rgba(62, 224, 197, 0.08); }
 
-    .hero {
-      padding: 72px 0 36px;
+    .page {
+      min-height: 100dvh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 96px 0 48px;
+      box-sizing: border-box;
+    }
+    .hero.page {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       gap: 56px;
-      align-items: end;
+      align-content: center;
+      align-items: center;
     }
+    footer { scroll-snap-align: none; }
     .kicker {
       color: var(--accent);
       letter-spacing: 0.18em;
@@ -212,7 +228,8 @@
     }
     .close-panel .inner { position: relative; z-index: 1; }
 
-    section { padding: 72px 0; }
+    section.page { padding: 96px 0 48px; }
+    .page .reel video { max-height: 38vh; object-fit: cover; }
     .section-head {
       display: flex;
       justify-content: space-between;
@@ -418,7 +435,7 @@
 
     .close {
       text-align: center;
-      padding: 28px 0 80px;
+      padding: 96px 0 48px;
     }
     .close-panel {
       position: relative;
@@ -484,7 +501,7 @@
         display: grid;
       }
       .section-head, .foot { display: grid; }
-      .hero { padding-top: 40px; }
+      .hero.page { width: auto; padding-top: 88px; }
       h1 { font-size: 52px; }
       td.price { text-align: left; white-space: normal; }
       table, thead, tbody, tr, th, td { display: block; }
@@ -517,7 +534,7 @@
   </nav>
 
   <main id="top">
-    <header class="wrap hero">
+    <header class="page hero">
       <div>
         <p class="kicker">The Street Accountant · Street Luxury</p>
         <h1>Your CFO<br>on the <em>go.</em></h1>
@@ -537,7 +554,7 @@
       </figure>
     </header>
 
-    <section>
+    <section class="page">
       <div class="wrap">
         <div class="section-head">
           <h2>Financial clarity, unlocked.</h2>
@@ -572,7 +589,7 @@
       </div>
     </section>
 
-    <section class="band">
+    <section class="page band">
       <div class="wrap engine">
         <div>
           <p class="kicker">The engine</p>
@@ -604,7 +621,7 @@
       </div>
     </section>
 
-    <section id="work">
+    <section class="page" id="work">
       <div class="wrap">
         <div class="section-head">
           <h2>What we do.</h2>
@@ -633,7 +650,7 @@
       </div>
     </section>
 
-    <section id="process" class="band">
+    <section class="page band" id="process">
       <div class="wrap">
         <div class="section-head">
           <h2>Connect. Review. Grow.</h2>
@@ -671,7 +688,7 @@
       </div>
     </section>
 
-    <section id="pricing">
+    <section class="page" id="pricing">
       <div class="wrap">
         <div class="section-head">
           <h2>Simple. Fixed-fee. No surprises.</h2>
@@ -720,7 +737,7 @@
       </div>
     </section>
 
-    <section id="cred" class="band">
+    <section class="page band" id="cred">
       <div class="wrap cred">
         <div class="shield" aria-hidden="true">
           <img src="assets/logo.png" alt="" style="width:78%;height:auto;object-fit:contain" />
@@ -738,7 +755,7 @@
       </div>
     </section>
 
-    <section class="close" id="start">
+    <section class="page close" id="start">
       <div class="wrap">
         <div class="close-panel">
           <video autoplay muted loop playsinline poster="assets/brick.jpg">
