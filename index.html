@@ -130,7 +130,7 @@
       border: 0;
       cursor: pointer;
       border-radius: 20px;
-      padding: 14px 22px;
+      padding: 9px 16px;
       background: var(--silver);
       color: #050505;
       font-weight: 700;
@@ -147,6 +147,11 @@
     }
     .btn.ghost:hover { background: #121212; }
 
+    .nav-inner .btn {
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+
     .page {
       min-height: 100dvh;
       scroll-snap-align: start;
@@ -154,7 +159,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 96px 0 48px;
+      padding: 110px 0 48px;
       box-sizing: border-box;
     }
     .hero.page {
@@ -238,22 +243,31 @@
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
     .meta {
       display: flex;
-      gap: 18px;
+      gap: 10px;
       flex-wrap: wrap;
-      color: var(--faint);
-      font-size: 13px;
-      letter-spacing: 0.04em;
+      margin-top: 8px;
+    }
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(192, 192, 192, 0.12);
+      border: 1px solid rgba(192, 192, 192, 0.28);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
+      font-weight: 600;
     }
     .meta span::before {
       content: "";
       display: inline-block;
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: var(--accent);
-      margin-right: 8px;
-      transform: translateY(-1px);
+      margin-right: 7px;
     }
 
     .hero-visual {
@@ -281,7 +295,7 @@
     }
     .close-panel .inner { position: relative; z-index: 1; }
 
-    section.page { padding: 96px 0 48px; }
+    section.page { padding: 110px 0 48px; }
     .page .reel video { max-height: 38vh; object-fit: cover; }
     .section-head {
       display: flex;
@@ -514,7 +528,7 @@
 
     .close {
       text-align: center;
-      padding: 96px 0 48px;
+      padding: 110px 0 48px;
     }
     .close-panel {
       position: relative;
@@ -581,7 +595,7 @@
         display: grid;
       }
       .section-head, .foot { display: grid; }
-      .hero.page { width: auto; padding-top: 88px; }
+      .hero.page { width: auto; padding-top: 100px; }
       .fee { grid-template-columns: 1fr; }
       .fee b { white-space: normal; }
       h1 { font-size: 52px; }
@@ -668,7 +682,7 @@
             <p>Packages banks, investors, and partners actually approve.</p>
           </article>
           <article class="card">
-            <div class="icon">⇄</div>
+            <div class="icon">▥</div>
             <h3>Clean handoff</h3>
             <p>Your CPA gets pristine books every year. Zero cleanup fees.</p>
           </article>
@@ -678,31 +692,31 @@
 
     <section class="page band">
       <div class="wrap engine">
+        <img src="assets/spark.jpg" alt="Chrome arrow tip with spark" />
         <div>
-          <img class="shot" src="assets/spark.jpg" alt="Chrome arrow tip with a single spark" />
-          <p class="kicker" style="margin-top:18px">The engine</p>
+          <p class="kicker">The engine</p>
           <h2>Runs quiet. Catches the expensive stuff.</h2>
-        </div>
-        <div class="engine-list">
-          <div class="row">
-            <div class="num">01</div>
-            <div>
-              <h3>AI scan, 24/7</h3>
-              <p>A bouncer for the books. Errors and duplicate charges get flagged before they cost you.</p>
+          <div class="engine-list">
+            <div class="row">
+              <div class="num">01</div>
+              <div>
+                <h3>AI scan, 24/7</h3>
+                <p>A bouncer for the books. Errors and duplicate charges get flagged before they cost you.</p>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="num">02</div>
-            <div>
-              <h3>Plain-English profit story</h3>
-              <p>Why profit and cash moved — not just the numbers.</p>
+            <div class="row">
+              <div class="num">02</div>
+              <div>
+                <h3>Plain-English profit story</h3>
+                <p>Why profit and cash moved — not just the numbers.</p>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="num">03</div>
-            <div>
-              <h3>Compliance autopilot</h3>
-              <p>State and local deadlines tracked. No missed filings, no late fees.</p>
+            <div class="row">
+              <div class="num">03</div>
+              <div>
+                <h3>Compliance autopilot</h3>
+                <p>State and local deadlines tracked. No missed filings, no late fees.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -711,39 +725,36 @@
 
     <section class="page" id="work">
       <div class="wrap">
-        <div class="split" style="margin-bottom:22px">
+        <div class="section-head">
           <div>
             <p class="kicker">What we do</p>
             <h2>Three moves. One folder.</h2>
-            <p class="lede">Kill the chaos once. Stay lender-ready after that.</p>
           </div>
-          <img src="assets/folder.jpg" alt="Black folder with silver corners on a brick ledge" />
+          <p>Kill the chaos once. Stay lender-ready after that.</p>
         </div>
+        <img src="assets/folder.jpg" alt="Black folder with silver corners" class="shot" style="margin-bottom: 22px;" />
         <div class="grid-3">
           <article class="card">
-            <div class="icon">☁</div>
             <h3>Cloud setup</h3>
             <p>QuickBooks Online or Xero, chart optimized, team trained. Done once.</p>
-            <span class="tag">Setup · Train · Go live</span>
+            <div class="tag">Setup · Train · Go live</div>
           </article>
           <article class="card featured">
-            <div class="icon">▦</div>
             <h3>Monthly packages</h3>
             <p>CPA-verified balance sheet, P&L, and cash flow on schedule.</p>
-            <span class="tag">Most popular · Every month</span>
+            <div class="tag">Most popular · Every month</div>
           </article>
           <article class="card">
-            <div class="icon">◷</div>
             <h3>Compliance tracking</h3>
             <p>Local licenses, state filings, recurring fees. Nothing slips.</p>
-            <span class="tag">Autopilot · Never late</span>
+            <div class="tag">Autopilot · Never late</div>
           </article>
         </div>
       </div>
     </section>
 
     <section class="frame">
-      <img src="assets/lamp.jpg" alt="Wet black brick and one streetlamp" />
+      <img src="assets/lamp.jpg" alt="Street lamp at night" />
       <div class="cap">
         <p class="kicker">After hours</p>
         <h2>The street stays open.</h2>
@@ -758,31 +769,46 @@
         </div>
         <p class="fee-step" id="fee-step">01 / 05</p>
         <div class="fees" id="fees">
-          <article class="fee on">
-            <div><strong>SETUP</strong><small>One-time</small></div>
+          <div class="fee on">
+            <div>
+              <strong>SETUP</strong>
+              <small>One-time</small>
+            </div>
             <p>Software conversion, cleanup, system design, staff training</p>
             <b>$2,500 – $8,000+</b>
-          </article>
-          <article class="fee">
-            <div><strong>MONTHLY MONITORING</strong><small>Remote clients · most popular</small></div>
+          </div>
+          <div class="fee">
+            <div>
+              <strong>MONTHLY MONITORING</strong>
+              <small>Remote clients · most popular</small>
+            </div>
             <p>Ongoing reporting and reconciliations. CPA-verified monthly.</p>
             <b>$400 – $1,200/mo</b>
-          </article>
-          <article class="fee">
-            <div><strong>QUARTERLY DEEP DIVE</strong><small>Add-on</small></div>
+          </div>
+          <div class="fee">
+            <div>
+              <strong>QUARTERLY DEEP DIVE</strong>
+              <small>Add-on</small>
+            </div>
             <p>Trend analysis, multi-entity reporting, cash flow forecasting</p>
             <b>+$300 – $800</b>
-          </article>
-          <article class="fee">
-            <div><strong>YEAR-END PACKAGE</strong><small>Standalone or bundled</small></div>
+          </div>
+          <div class="fee">
+            <div>
+              <strong>YEAR-END PACKAGE</strong>
+              <small>Standalone or bundled</small>
+            </div>
             <p>Pristine year-end close — bundled for monthly clients, or standalone</p>
             <b>$1,500 – $4,000</b>
-          </article>
-          <article class="fee">
-            <div><strong>COMPLIANCE CALENDAR</strong><small>Per project</small></div>
+          </div>
+          <div class="fee">
+            <div>
+              <strong>COMPLIANCE CALENDAR</strong>
+              <small>Per project</small>
+            </div>
             <p>Tracking and filing for local and state licenses and recurring fees</p>
             <b>Modest add-on</b>
-          </article>
+          </div>
         </div>
         <div class="note">
           <span>Self-sufficient clients win — cleaner books, lower rate.</span>
@@ -793,11 +819,11 @@
 
     <section class="page band" id="cred">
       <div class="wrap cred">
-        <img class="shot" src="assets/vault.jpg" alt="Black steel vault door with a skyline etched in" style="height:100%;min-height:420px" />
+        <img src="assets/vault.jpg" alt="Black steel vault door with skyline" />
         <div>
           <p class="kicker">The street cred</p>
           <h2>35+ years of financial leadership.</h2>
-          <p class="lede" style="margin-top:14px">Former Big 5 accountant and private-industry CFO. Fortune 500-level oversight for growing businesses.</p>
+          <p class="lede">Former Big 5 accountant and private-industry CFO. Fortune 500-level oversight for growing businesses.</p>
           <div class="points">
             <div>Not a bookkeeper. A CFO on the Street.</div>
             <div>Non-attest reporting, done right. Lender-ready, bank-ready, always.</div>
@@ -808,7 +834,7 @@
     </section>
 
     <section class="frame">
-      <img src="assets/sign.jpg" alt="Cut metal STREET sign screwed to black brick" />
+      <img src="assets/sign.jpg" alt="Chrome sign bolted to wall" />
       <div class="cap">
         <p class="kicker">Chrome edition</p>
         <h2>Bolted to the wall.</h2>
@@ -819,31 +845,31 @@
       <div class="wrap">
         <div class="close-panel">
           <div class="inner">
-          <p class="kicker">Ready to roll?</p>
-          <h2>Your CFO on the Street is ready.</h2>
-          <p>Stop paying to fix the books. Start using them to grow.</p>
-          <form id="lead">
-            <label>Name
-              <input name="name" required placeholder="Alex Rivera" />
-            </label>
-            <label>Email
-              <input type="email" name="email" required placeholder="you@company.com" />
-            </label>
-            <label class="full">What do you need
-              <select name="need">
-                <option>Monthly monitoring</option>
-                <option>Cloud setup</option>
-                <option>Year-end package</option>
-                <option>Not sure yet</option>
-              </select>
-            </label>
-            <label class="full">Notes
-              <textarea name="notes" placeholder="Entity type, software, what the bank is asking for."></textarea>
-            </label>
-            <button class="btn" type="submit">Get started — book your Street Audit</button>
-          </form>
-          <p class="offer">Free Lender-Readiness Score for the first 10 this month · $750 value</p>
-          <p class="toast" id="toast">Got it. We’ll follow up to book the Street Audit.</p>
+            <p class="kicker">Ready to roll?</p>
+            <h2>Your CFO on the Street is ready.</h2>
+            <p>Stop paying to fix the books. Start using them to grow.</p>
+            <form id="lead">
+              <label>Name
+                <input name="name" required placeholder="Alex Rivera" />
+              </label>
+              <label>Email
+                <input type="email" name="email" required placeholder="you@company.com" />
+              </label>
+              <label class="full">What do you need
+                <select name="need">
+                  <option>Monthly monitoring</option>
+                  <option>Cloud setup</option>
+                  <option>Year-end package</option>
+                  <option>Not sure yet</option>
+                </select>
+              </label>
+              <label class="full">Notes
+                <textarea name="notes" placeholder="Entity type, software, what the bank is asking for."></textarea>
+              </label>
+              <button class="btn" type="submit">Get started — book your Street Audit</button>
+            </form>
+            <p class="offer">Free Lender-Readiness Score for the first 10 this month · $750 value</p>
+            <p class="toast" id="toast">Got it. We’ll follow up to book the Street Audit.</p>
           </div>
         </div>
       </div>
